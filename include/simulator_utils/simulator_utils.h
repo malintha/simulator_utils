@@ -24,6 +24,7 @@ typedef struct {
 typedef struct {
     Vector3d position;
     Vector3d velocity;
+    Vector3d acceleration;
     Matrix3d R;
     Vector3d omega;
 } state_space_t;
@@ -46,6 +47,14 @@ typedef struct {
     Vector3d M;
 } control_out_t;
 
+typedef struct {
+    Vector3d position;
+    Vector3d velocity;
+    Vector3d acceleration;
+    Vector3d jerk;
+} opt_t;
+
+
 namespace simulator_utils {
     Matrix3d hat(Vector3d v);
     Vector3d R2RPY(Matrix3d R);
@@ -53,4 +62,3 @@ namespace simulator_utils {
     Matrix3d ned_nwu_rotation(Matrix3d m);
     Vector3d vee(Matrix3d mat);
 }
-
