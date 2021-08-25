@@ -124,8 +124,9 @@ include_directories(
 
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
-  include/${PROJECT_NAME}/simulator_utils.h
+  include/${PROJECT_NAME}
   src/simulator_utils.cpp
+  src/Drone.cpp
 )
 
 ## Add cmake target dependencies of the library

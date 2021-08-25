@@ -54,7 +54,6 @@ typedef struct {
     Vector3d jerk;
 } opt_t;
 
-
 namespace simulator_utils {
     Matrix3d hat(Vector3d v);
     Vector3d R2RPY(Matrix3d R);
