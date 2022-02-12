@@ -60,4 +60,5 @@ namespace simulator_utils {
     Vector3d ned_nwu_rotation(Vector3d v);
     Matrix3d ned_nwu_rotation(Matrix3d m);
     Vector3d vee(Matrix3d mat);
+
 }

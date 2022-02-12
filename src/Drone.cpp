@@ -7,7 +7,7 @@
 using namespace std;
 
 simulator_utils::Waypoint Drone::get_state() const {
-//    ROS_DEBUG_STREAM("state: "<<state.position.x << " "<< state.position.y << " " << state.position.z);
+    // ROS_DEBUG_STREAM("Robot: "<<id<<" pos: "<<this->state.position.x<<" " << this->state.position.y);
     return this->state;
 }
 
@@ -17,13 +17,15 @@ void Drone::state_cb(const simulator_utils::WaypointConstPtr &wp) {
     this->state.acceleration = wp->acceleration;
 }
 
+// TODO: pass the topic prefix as a parameter
 Drone::Drone(int id, const ros::NodeHandle &n):id(id), nh(n) {
+
     stringstream ss;
     ss << "/robot_"<<to_string(id)<<"/current_state";
-    this->state_sub = nh.subscribe(ss.str(), 1,
+    this->state_sub = nh.subscribe(ss.str(), 10,
                                    &Drone::state_cb,
                                    this);
 
-    ROS_DEBUG_STREAM("Robot: "<<id<<" Waiting for quadrotor states.");
-    ros::topic::waitForMessage<simulator_utils::Waypoint>(ss.str(), ros::Duration(5));
+    ROS_DEBUG_STREAM("Robot: "<<this->id<<" Waiting for quadrotor states.");
+    ros::topic::waitForMessage<simulator_utils::Waypoint>(ss.str(), ros::Duration(3));
 }
